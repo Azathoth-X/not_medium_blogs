@@ -2,6 +2,7 @@ import { drizzle } from 'drizzle-orm/postgres-js'
 import { Hono } from 'hono'
 import { usersTable } from './db/schemas/user'
 import { decode,sign,verify } from 'hono/jwt'
+import { eq } from 'drizzle-orm'
 
 const app = new Hono<{
   Bindings:{
@@ -33,8 +34,26 @@ app.post('/signup', async (c) => {
   })
 })
 
-app.post('/signin', (c) => {
-  return c.text('Hello Hono!')
+app.post('/signin', async (c) => {
+
+  const body= await c.req.json()
+
+  const user = await db
+                .select()
+                .from(usersTable)
+                .where(
+                  eq(usersTable.email,body.email)
+                )
+  
+  if(!user.length){
+    c.status(403)
+    return c.json({"error":"invalid user or password"})
+  }
+  else{
+    const token= await sign({id:user[0].id},c.env.JWT_SECRET)
+
+    return c.json({jwt:token})
+  }
 })
 
 app.post('/blog', (c) => {
