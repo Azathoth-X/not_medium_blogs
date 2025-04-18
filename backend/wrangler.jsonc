@@ -6,10 +6,10 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  "vars": {
-    "DATABASE_URL":"postgresql://postgres:postgres@localhost:5432/notmedium",
-    "JWT_SECRET":"idkman"
-  },
+  // "vars": { //moved to .dev.vars
+  //   "DATABASE_URL":"",
+  //   "JWT_SECRET":""
+  // },
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",

@@ -2,7 +2,7 @@ import { Hono } from "hono"
 import {sign, verify} from "hono/jwt"
 import { eq } from "drizzle-orm"
 import { app, db } from ".."
-import { postRelation, postTable } from "../db/schemas/post"
+import {  postTable } from "../db/schemas/post"
 import { JWTPayload } from "hono/utils/jwt/types"
 
 type Variables={
@@ -24,7 +24,7 @@ interface CustomJWTPayload extends JWTPayload {
 type inferInsert = typeof postTable.$inferInsert
 type inputBlog = Omit<inferInsert, 'id' >
 
-blogRouter.use("/blog/*", async (c, next) => {
+blogRouter.use("/*", async (c, next) => {
   try {
     const dead = c.req.header("Authorization") || "";
     if (!dead) {
@@ -49,7 +49,7 @@ blogRouter.use("/blog/*", async (c, next) => {
   }
 })
 
-blogRouter.post('/blog', async (c) => {
+blogRouter.post('/', async (c) => {
 
     const body:inputBlog = await c.req.json()
     body.authorId= c.get("authorId")
@@ -62,7 +62,7 @@ blogRouter.post('/blog', async (c) => {
     return c.redirect(`/blog/${blog.id}`) 
 })
 
-blogRouter.get('/blog/:id', async (c) => {
+blogRouter.get('/:id', async (c) => {
 
   const id =c.req.param("id")
 
@@ -73,6 +73,6 @@ blogRouter.get('/blog/:id', async (c) => {
   return c.json(blog)
 })
 
-blogRouter.put('/blog', (c) => {
+blogRouter.put('/', (c) => {
   return c.text('Hello Hono!')
 })
