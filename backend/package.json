@@ -7,12 +7,12 @@
     "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
+    "@azath0th_28/not_medium_types": "^1.0.0",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.42.0",
     "hono": "^4.7.7",
     "pg": "^8.14.1",
-    "postgres": "^3.4.5",
-    "zod": "^3.24.3"
+    "postgres": "^3.4.5"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250214.0",

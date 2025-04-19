@@ -3,6 +3,7 @@ import {sign} from "hono/jwt"
 import { usersTable } from "../db/schemas/user"
 import { eq } from "drizzle-orm"
 import { db } from ".."
+import {signUpInput, signInInput} from "@azath0th_28/not_medium_types/dist"
 
 
 export const userRouter = new Hono<{
@@ -13,16 +14,18 @@ export const userRouter = new Hono<{
 }>()
 
 
-type user = typeof usersTable.$inferInsert
+type user = signUpInput
 
 userRouter.post('/signup', async (c) => {
 
   const body = await c.req.json()
 
-  const insertUser:user={
-    email:body.email,
-    password:body.password,
-  } 
+  const {success} = signUpInput.safeParse(body)
+  if (!success){
+    return c.json({message:"input not correct "},411)
+  }
+  
+  const insertUser=body as user
 
   const retUser=await db.insert(usersTable).values(insertUser).returning()
 
@@ -35,15 +38,17 @@ userRouter.post('/signup', async (c) => {
 
 
 userRouter.post('/signin', async (c) => {
-
-  const body= await c.req.json()
+  const body = await c.req.json()
+  
+  const {success} = signInInput.safeParse(body)
+  if (!success) {
+    return c.json({message: "Invalid input"}, 411)
+  }
 
   const user = await db
                 .select()
                 .from(usersTable)
-                .where(
-                  eq(usersTable.email,body.email)
-                )
+                .where(eq(usersTable.email, body.email))
   
   if(!user.length){
     c.status(403)

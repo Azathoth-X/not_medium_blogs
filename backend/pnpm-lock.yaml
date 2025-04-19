@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@azath0th_28/not_medium_types':
+        specifier: ^1.0.0
+        version: 1.0.0
       dotenv:
         specifier: ^16.5.0
         version: 16.5.0
@@ -23,9 +26,6 @@ importers:
       postgres:
         specifier: ^3.4.5
         version: 3.4.5
-      zod:
-        specifier: ^3.24.3
-        version: 3.24.3
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20250214.0
@@ -47,6 +47,9 @@ importers:
         version: 4.12.0(@cloudflare/workers-types@4.20250417.0)
 
 packages:
+
+  '@azath0th_28/not_medium_types@1.0.0':
+    resolution: {integrity: sha512-2Kn3Bb0mO8JO372t9MzRlKDENJvHqTC+qw+KJtZwHaOgabd5h2b1vMid6edbRhsxHnd7BY7B4RBYqoAJ+HPtdg==}
 
   '@cloudflare/kv-asset-handler@0.4.0':
     resolution: {integrity: sha512-+tv3z+SPp+gqTIcImN9o0hqE9xyfQjI1XD9pL6NuKjua9B1y7mNYv0S9cP+QEbA4ppVgGZEmKOvHX5G5Ei1CVA==}
@@ -922,6 +925,10 @@ packages:
     resolution: {integrity: sha512-HhY1oqzWCQWuUqvBFnsyrtZRhyPeR7SUGv+C4+MsisMuVfSPx8HpwWqH8tRahSlt6M3PiFAcoeFhZAqIXTxoSg==}
 
 snapshots:
+
+  '@azath0th_28/not_medium_types@1.0.0':
+    dependencies:
+      zod: 3.24.3
 
   '@cloudflare/kv-asset-handler@0.4.0':
     dependencies:

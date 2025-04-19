@@ -1,5 +1,5 @@
 {
-  "name": "common",
+  "name": "@azath0th_28/not_medium_types",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,5 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.8.1"
+  "packageManager": "pnpm@10.8.1",
+  "dependencies": {
+    "zod": "^3.24.3"
+  }
 }

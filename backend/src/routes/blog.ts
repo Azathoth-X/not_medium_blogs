@@ -2,8 +2,9 @@ import { Hono } from "hono"
 import {sign, verify} from "hono/jwt"
 import { eq } from "drizzle-orm"
 import { app, db } from ".."
-import {  postTable } from "../db/schemas/post"
+import { postTable } from "../db/schemas/post"
 import { JWTPayload } from "hono/utils/jwt/types"
+import { createBlogInput } from "@azath0th_28/not_medium_types/dist"
 
 type Variables={
   authorId: string
@@ -50,16 +51,23 @@ blogRouter.use("/*", async (c, next) => {
 })
 
 blogRouter.post('/', async (c) => {
+    const body = await c.req.json()
+    
+    const {success} = createBlogInput.safeParse(body)
+    if (!success) {
+        return c.json({message: "Invalid blog input"}, 411)
+    }
 
-    const body:inputBlog = await c.req.json()
-    body.authorId= c.get("authorId")
-    body.published=true
+    const blogPost: inputBlog = {
+        ...body,
+        authorId: c.get("authorId"),
+        published: true
+    }
 
-    const insertReturn = await db.insert(postTable).values(body).returning()
+    const insertReturn = await db.insert(postTable).values(blogPost).returning()
+    const blog = insertReturn[0]
 
-    const blog =insertReturn[0]
-
-    return c.redirect(`/blog/${blog.id}`) 
+    return c.redirect(`/blog/${blog.id}`)
 })
 
 blogRouter.get('/:id', async (c) => {
