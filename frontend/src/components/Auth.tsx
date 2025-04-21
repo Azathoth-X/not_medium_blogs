@@ -1,10 +1,11 @@
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import {signUpInput} from "@azath0th_28/not_medium_types/dist"
 import { useState } from "react"
 import axios from "axios"
-
+import { DB_url } from "../config"
 
 export const Auth = () => {
+    const navigate = useNavigate();
 
     const [postInputs,setPostInputs]=useState<signUpInput>({
         email:"",
@@ -12,10 +13,17 @@ export const Auth = () => {
         password:"",
     })
     
-    // async function submitInputs(inputs:signUpInput){
-        
-    //     axios.post()
-    // }
+    async function submitInputs(){
+        try{
+            const response = await axios.post(`${DB_url}/user/signup`,postInputs)
+            const jwt = response.data.jwt
+            localStorage.setItem("token",jwt)
+            navigate("/blogs")
+        }catch{
+            alert("couldnt signup")
+            //alert user couldnt signup
+        }
+    }
 
     return (
         <div className=" content-center h-screen">
@@ -75,7 +83,7 @@ export const Auth = () => {
 
                     <button 
                         className="w-full mt-6 bg-slate-800 text-white p-2 rounded-md hover:bg-slate-700"
-                        // onClick={}
+                        onClick={submitInputs}
                     >
                         Sign Up
                     </button>
