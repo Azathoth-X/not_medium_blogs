@@ -2,7 +2,7 @@ import {Link, useNavigate} from "react-router-dom"
 import {signInInput} from "@azath0th_28/not_medium_types/dist"
 import { useState } from "react"
 import axios from "axios"
-import { DB_url } from "../config"
+import { Backend_url } from "../config"
 
 export const Login = () => {
 
@@ -29,7 +29,7 @@ export const Login = () => {
                 return;
             }
             
-            const response = await axios.post(`${DB_url}/user/signin`,postInputs)
+            const response = await axios.post(`${Backend_url}/user/signin`,postInputs)
 
             if(response.status===411) {
                 setIsLoginError(true);

@@ -2,7 +2,7 @@ import {Link, useNavigate} from "react-router-dom"
 import {signUpInput} from "@azath0th_28/not_medium_types/dist"
 import { useState } from "react"
 import axios from "axios"
-import { DB_url } from "../config"
+import { Backend_url } from "../config"
 
 export const Auth = () => {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ export const Auth = () => {
     
     async function submitInputs(){
         try{
-            const response = await axios.post(`${DB_url}/user/signup`,postInputs)
+            const response = await axios.post(`${Backend_url}/user/signup`,postInputs)
             const jwt = response.data.jwt
             localStorage.setItem("token",jwt)
             navigate("/blogs")

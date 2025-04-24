@@ -1,10 +1,11 @@
 import { Hono } from "hono"
 import {sign, verify} from "hono/jwt"
-import { eq } from "drizzle-orm"
+import { eq, sql } from "drizzle-orm"
 import { app, db } from ".."
 import { postTable } from "../db/schemas/post"
 import { JWTPayload } from "hono/utils/jwt/types"
 import { createBlogInput } from "@azath0th_28/not_medium_types/dist"
+import { usersTable } from "../db/schemas/user"
 
 type Variables={
   authorId: string
@@ -83,4 +84,20 @@ blogRouter.get('/:id', async (c) => {
 
 blogRouter.put('/', (c) => {
   return c.text('Hello Hono!')
+})
+
+blogRouter.get('/',async (c) => {
+  const blogs = await db.query.postTable.findMany({
+    with: {
+      author: {
+        columns:{
+          name: true
+        }
+      }
+    },
+    limit: 10,
+    orderBy: sql`RANDOM()`
+  });
+
+  return c.json(blogs)
 })
