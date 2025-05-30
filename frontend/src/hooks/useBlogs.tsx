@@ -34,3 +34,27 @@ export const useBlogs = () => {
 
     return { blogs, loading }
 }
+
+
+export const useBlog = ({id}:{id:string}) => {
+    const [loading, setLoading] = useState(true)
+    const [blogs, setBlogs] = useState<Blog>()
+
+    useEffect(() => {
+        axios.get(`${Backend_url}/blog/${id}`, {
+            headers: {
+                Authorization: "a " + localStorage.getItem("token")
+            }
+        })
+        .then((res) => {
+            setBlogs(res.data)
+            setLoading(false)
+        })
+        .catch((error) => {
+            console.error("Error fetching blogs:", error)
+            setLoading(false)
+        })
+    }, )
+
+    return { blogs, loading }
+}

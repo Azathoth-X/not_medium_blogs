@@ -89,7 +89,7 @@ export const Auth = () => {
                     </button>
 
                     <div className="mt-4 text-sm text-slate-600 text-center">
-                        Already have an account? <Link className="text-slate-800 hover:underline" to={'/login'}>Login</Link>
+                        Already have an account? <Link className="text-slate-800 hover:underline" to={'/signin'}>Login</Link>
                     </div>
                 </div>
             </div>
