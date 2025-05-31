@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Backend_url } from "../config"
+import { DBackend_url as Backend_url } from "../config"
 
 interface Blog {
     id: string,

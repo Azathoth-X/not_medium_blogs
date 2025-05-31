@@ -26,6 +26,22 @@ interface CustomJWTPayload extends JWTPayload {
 type inferInsert = typeof postTable.$inferInsert
 type inputBlog = Omit<inferInsert, 'id' >
 
+blogRouter.get('/',async (c) => {
+  const blogs = await db.query.postTable.findMany({
+    with: {
+      author: {
+        columns:{
+          name: true
+        }
+      }
+    },
+    limit: 10,
+    orderBy: sql`RANDOM()`
+  });
+
+  return c.json(blogs)
+})
+
 blogRouter.use("/*", async (c, next) => {
   try {
     const dead = c.req.header("Authorization") || "";
@@ -46,6 +62,7 @@ blogRouter.use("/*", async (c, next) => {
 
     c.set("authorId", response.id);
     await next();
+
   } catch (error) {
     return c.json({ error: "Invalid token" }, 401);
   }
@@ -82,22 +99,3 @@ blogRouter.get('/:id', async (c) => {
   return c.json(blog)
 })
 
-blogRouter.put('/', (c) => {
-  return c.text('Hello Hono!')
-})
-
-blogRouter.get('/',async (c) => {
-  const blogs = await db.query.postTable.findMany({
-    with: {
-      author: {
-        columns:{
-          name: true
-        }
-      }
-    },
-    limit: 10,
-    orderBy: sql`RANDOM()`
-  });
-
-  return c.json(blogs)
-})

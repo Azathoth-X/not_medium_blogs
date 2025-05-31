@@ -11,12 +11,15 @@ importers:
       '@azath0th_28/not_medium_types':
         specifier: ^1.0.0
         version: 1.0.0
+      '@neondatabase/serverless':
+        specifier: ^1.0.0
+        version: 1.0.0
       dotenv:
         specifier: ^16.5.0
         version: 16.5.0
       drizzle-orm:
         specifier: ^0.42.0
-        version: 0.42.0(@cloudflare/workers-types@4.20250417.0)(@types/pg@8.11.13)(pg@8.14.1)(postgres@3.4.5)
+        version: 0.42.0(@cloudflare/workers-types@4.20250417.0)(@neondatabase/serverless@1.0.0)(@types/pg@8.11.13)(pg@8.14.1)(postgres@3.4.5)
       hono:
         specifier: ^4.7.7
         version: 4.7.7
@@ -515,6 +518,10 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@neondatabase/serverless@1.0.0':
+    resolution: {integrity: sha512-XWmEeWpBXIoksZSDN74kftfTnXFEGZ3iX8jbANWBc+ag6dsiQuvuR4LgB0WdCOKMb5AQgjqgufc0TgAsZubUYw==}
+    engines: {node: '>=19.0.0'}
 
   '@types/node@22.14.1':
     resolution: {integrity: sha512-u0HuPQwe/dHrItgHHpmw3N2fYCR6x4ivMNbPHRkBVP4CvN+kiRrKHWk3i8tXiO/joPwXLMYvF9TTF0eqgHIuOw==}
@@ -1205,6 +1212,11 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@neondatabase/serverless@1.0.0':
+    dependencies:
+      '@types/node': 22.14.1
+      '@types/pg': 8.11.13
+
   '@types/node@22.14.1':
     dependencies:
       undici-types: 6.21.0
@@ -1271,9 +1283,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.42.0(@cloudflare/workers-types@4.20250417.0)(@types/pg@8.11.13)(pg@8.14.1)(postgres@3.4.5):
+  drizzle-orm@0.42.0(@cloudflare/workers-types@4.20250417.0)(@neondatabase/serverless@1.0.0)(@types/pg@8.11.13)(pg@8.14.1)(postgres@3.4.5):
     optionalDependencies:
       '@cloudflare/workers-types': 4.20250417.0
+      '@neondatabase/serverless': 1.0.0
       '@types/pg': 8.11.13
       pg: 8.14.1
       postgres: 3.4.5
