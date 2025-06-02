@@ -6,6 +6,7 @@ import { postTable } from "../db/schemas/post"
 import { JWTPayload } from "hono/utils/jwt/types"
 import { createBlogInput } from "@azath0th_28/not_medium_types/dist"
 import { usersTable } from "../db/schemas/user"
+import { Frontend } from "../config"
 
 type Variables={
   authorId: string
@@ -70,7 +71,7 @@ blogRouter.use("/*", async (c, next) => {
 
 blogRouter.post('/', async (c) => {
     const body = await c.req.json()
-    
+
     const {success} = createBlogInput.safeParse(body)
     if (!success) {
         return c.json({message: "Invalid blog input"}, 411)
@@ -80,12 +81,14 @@ blogRouter.post('/', async (c) => {
         ...body,
         authorId: c.get("authorId"),
         published: true
-    }
-
+    }    
     const insertReturn = await db.insert(postTable).values(blogPost).returning()
     const blog = insertReturn[0]
 
-    return c.redirect(`/blog/${blog.id}`)
+    return c.json({ 
+        id: blog.id,
+        message: "Blog created successfully" 
+    })
 })
 
 blogRouter.get('/:id', async (c) => {

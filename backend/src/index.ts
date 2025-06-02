@@ -6,6 +6,7 @@ import { blogRouter } from './routes/blog';
 import { cors } from 'hono/cors';
 import * as postSchema from './db/schemas/post';
 import * as userSchema from './db/schemas/user';
+import { Frontend } from './config';
 
 export const app = new Hono<{
   Bindings: {
@@ -23,7 +24,14 @@ export const db = drizzle(client, {
   }
 });
 
-app.use(cors());
+app.use(cors({
+  origin: [Frontend, 'http://localhost:5173', 'http://127.0.0.1:5173'],
+  allowHeaders: ['Content-Type', 'Authorization'],
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  exposeHeaders: ['Content-Length', 'Content-Type'],
+  credentials: true,
+  maxAge: 600
+}));
 
 app.route('/user', userRouter);
 app.route('/blog', blogRouter);
