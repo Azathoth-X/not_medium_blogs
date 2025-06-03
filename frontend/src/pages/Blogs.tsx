@@ -28,7 +28,8 @@ export const Blogs=()=>{
             <div className="justify-items-center pt-8">
                 {blogs.map((b)=>(
                     <BlogCard 
-                    authorName={b.author.name||"A"} 
+                    blogId={b.id}
+                    authorName={b.author.name} 
                     title= {b.title}
                     content={b.content}
                     publishedDate="25 Dec 2025"

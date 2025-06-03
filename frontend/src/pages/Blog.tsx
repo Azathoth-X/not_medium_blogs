@@ -19,8 +19,8 @@ export function Blog(){
                 <div>
                     <span className="text-4xl font-bold">This is my blog</span>
                 </div>
-                <div className="text-lg">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet ante mattis, hendrerit ipsum sit amet, sagittis arcu. Nullam fermentum nunc sit amet ipsum bibendum, aliquam congue ligula ultricies. Aliquam erat volutpat. Ut ultricies mauris ut ligula pulvinar aliquet. Etiam vel ultricies elit. Fusce ut bibendum eros. Sed viverra tellus quis nunc iaculis, sodales semper velit facilisis. Quisque laoreet turpis ac neque fringilla condimentum. Suspendisse magna odio, blandit ut ex at, scelerisque egestas lorem.
+                <div className="text-lg whitespace-pre-wrap">
+                    Lorem ipsum dolor sit amet, consectetur\n adipiscing elit. Nunc aliquet ante mattis, hendrerit ipsum sit amet, sagittis arcu. Nullam fermentum nunc sit amet ipsum bibendum, aliquam congue ligula ultricies. Aliquam erat volutpat. Ut ultricies mauris ut ligula pulvinar aliquet. Etiam vel ultricies elit. Fusce ut bibendum eros. Sed viverra tellus quis nunc iaculis, sodales semper velit facilisis. Quisque laoreet turpis ac neque fringilla condimentum. Suspendisse magna odio, blandit ut ex at, scelerisque egestas lorem.
 
 Integer quis mauris erat. Etiam id sagittis sem, eu molestie purus. Proin id lorem maximus, luctus est id, consectetur velit. Cras ut elit sit amet libero consectetur feugiat quis a turpis. Quisque suscipit consectetur urna in eleifend. Proin malesuada, nisl sed dapibus vulputate, neque mi condimentum libero, nec mollis erat justo vel nulla. Donec sit amet consequat augue, sit amet mollis nisi. Quisque a ipsum efficitur, aliquam orci eget, sagittis tellus. Quisque rutrum interdum libero, sed eleifend lacus elementum ut. Sed sed viverra massa. Proin ut lacinia justo. Mauris fermentum ac sapien condimentum malesuada.
 
