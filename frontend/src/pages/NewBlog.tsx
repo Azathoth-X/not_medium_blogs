@@ -31,7 +31,7 @@ export function NewBlog(){
     
     return(
         <div>
-            <Appbar username="bruh"/>
+            <Appbar />
             <div className="flex flex-col gap-2 p-8 justify-center items-center">
                 <span className="text-xl font-bold md:w-xl min-w-sm text-left">Title</span>
                 <input 

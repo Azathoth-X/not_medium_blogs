@@ -19,7 +19,7 @@ export function Blog(){
     
     return(
        <div>
-        <Appbar username="keye"></Appbar>
+        <Appbar ></Appbar>
         { loading ? (
           <div className="flex p-8 items-left h-64 ">
             <LoadingBlog/>

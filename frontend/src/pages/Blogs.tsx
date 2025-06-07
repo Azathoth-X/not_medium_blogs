@@ -10,7 +10,8 @@ export const Blogs=()=>{
     if (loading){
         return(
             <div>
-            <Appbar username="Aasfoiu"/>
+            {/* <Appbar username="Aasfoiu"/> */}
+            <Appbar/>
                 <div className="justify-items-center pt-8">
                     <LoadingBlogCard/>
                     <LoadingBlogCard/>
@@ -24,7 +25,8 @@ export const Blogs=()=>{
     else{
     return(
         <div>
-            <Appbar username="Aasfoiu"/>
+            {/* <Appbar username="Aasfoiu"/> */}
+            <Appbar/>
             <div className="justify-items-center pt-8">
                 {blogs.map((b)=>(
                     <BlogCard 
