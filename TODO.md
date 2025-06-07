@@ -1,4 +1,4 @@
 - [x] create new blog page
-- [ ] create new blog button on appbar 
-- [ ] create drop down for logout on avatar in appbar
+- [x] create new blog button on appbar 
+- [x] create drop down for logout on avatar in appbar
 - [ ] add ai features for summarization 

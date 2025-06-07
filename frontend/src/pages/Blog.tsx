@@ -7,12 +7,15 @@ import { LoadingBlog } from "../components/LoadingBlog";
 
 export function Blog(){
     const navigate = useNavigate()
+    const token = localStorage.getItem("token")
+
     const { blogid } = useParams()
     
     // Use useEffect to handle navigation for missing blogid to avoid render issues
     useEffect(() => {
         if(!blogid) navigate("/notfound")
-    }, [blogid, navigate])
+        if(!token)navigate("/signin")
+    }, [blogid, navigate, token])
     
     // Use the hook
     const {blog, loading} = useBlog({id: blogid || ""})

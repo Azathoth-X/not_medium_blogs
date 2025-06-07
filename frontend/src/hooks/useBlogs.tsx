@@ -17,11 +17,7 @@ export const useBlogs = () => {
     const [blogs, setBlogs] = useState<Blog[]>([])
 
     useEffect(() => {
-        axios.get(`${Backend_url}/blog`, {
-            headers: {
-                Authorization: "a " + localStorage.getItem("token")
-            }
-        })
+        axios.get(`${Backend_url}/blog`)
         .then((res) => {
             setBlogs(res.data)
             setLoading(false)
@@ -39,22 +35,27 @@ export const useBlogs = () => {
 export const useBlog = ({id}:{id:string}) => {
     const [loading, setLoading] = useState(true)
     const [blog, setBlogs] = useState<Blog>({} as Blog)
+    const token = localStorage.getItem("token")
 
     useEffect(() => {
-        axios.get(`${Backend_url}/blog/${id}`, {
-            headers: {
-                Authorization: "a " + localStorage.getItem("token")
-            }
-        })
-        .then((res) => {
-            setBlogs(res.data)
-            setLoading(false)
-        })
-        .catch((error) => {
-            console.error("Error fetching blogs:", error)
-            setLoading(false)
-        })
-    }, [id]) // Added id as a dependency so it only reruns if id changes
+        if(token){
+            axios.get(`${Backend_url}/blog/${id}`, {
+                headers: {
+                    Authorization: "a " + token
+                }
+            })
+            .then((res) => {
+                setBlogs(res.data)
+                setLoading(false)
+            })
+            .catch((error) => {
+                console.error("Error fetching blogs:", error)
+                setLoading(false)
+            })
+        }
+        setLoading(false)
+        
+    }, [id, token]) // Added id as a dependency so it only reruns if id changes
 
     return { blog, loading }
 }
