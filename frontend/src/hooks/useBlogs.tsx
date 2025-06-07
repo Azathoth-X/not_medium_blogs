@@ -38,7 +38,7 @@ export const useBlogs = () => {
 
 export const useBlog = ({id}:{id:string}) => {
     const [loading, setLoading] = useState(true)
-    const [blogs, setBlogs] = useState<Blog>()
+    const [blog, setBlogs] = useState<Blog>({} as Blog)
 
     useEffect(() => {
         axios.get(`${Backend_url}/blog/${id}`, {
@@ -54,7 +54,7 @@ export const useBlog = ({id}:{id:string}) => {
             console.error("Error fetching blogs:", error)
             setLoading(false)
         })
-    }, )
+    }, [id]) // Added id as a dependency so it only reruns if id changes
 
-    return { blogs, loading }
+    return { blog, loading }
 }
