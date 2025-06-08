@@ -1,1 +1,1 @@
-export const Frontend = "http://localhost:5173"
+export const Frontend = "https://midyum.pages.dev"

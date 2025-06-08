@@ -37,7 +37,7 @@ export const app = new Hono<{
 
 
 app.use(cors({
-  origin: [Frontend, 'http://localhost:5173', 'http://127.0.0.1:5173'],
+  origin: [Frontend],
   allowHeaders: ['Content-Type', 'Authorization'],
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   exposeHeaders: ['Content-Length', 'Content-Type'],

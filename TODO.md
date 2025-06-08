@@ -1,4 +1,4 @@
 - [x] create new blog page
 - [x] create new blog button on appbar 
 - [x] create drop down for logout on avatar in appbar
-- [ ] add ai features for summarization 
+- [ ] add ai features for summarization : set cors for dev in backend if come back. 

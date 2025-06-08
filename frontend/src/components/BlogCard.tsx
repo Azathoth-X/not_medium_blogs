@@ -12,7 +12,7 @@ interface BlogCardProps{
 export const BlogCard = (Blog:BlogCardProps)=>{
 
     return (
-        <div className="border-b p-1 m-2 min-w-xl">
+        <div className="border-b p-1 m-2 w-xl text-wrap">
             <div className="flex">
 
                 <div className="relative inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-slate-300 rounded-full ">
